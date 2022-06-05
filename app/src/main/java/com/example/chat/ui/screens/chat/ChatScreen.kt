@@ -13,6 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.chat.R
+import com.example.chat.app.isLight
 import com.example.chat.domain.model.Message
 import com.example.chat.ui.theme.AppTheme
 
@@ -21,7 +22,12 @@ fun ChatScreen(
     viewModel: ChatViewModel = viewModel(),
 ) {
     val message = viewModel.message.observeAsState()
+
     val deleteIcon = R.drawable.ic_sharp_delete_sweep_24
+    val lightTheme = R.drawable.ic_baseline_brightness_1_24
+    val darkTheme = R.drawable.ic_baseline_brightness_2_24
+
+    val themeIcon = remember { mutableStateOf(lightTheme) }
     val openDialog = remember { mutableStateOf(false) }
 
     Scaffold(
@@ -30,10 +36,25 @@ fun ChatScreen(
                 title = {
                     Row {
                         Text(
-                            text = "Chat", modifier = Modifier
+                            text = "Chat",
+                            modifier = Modifier
                                 .weight(1F)
                                 .padding(top = 10.dp)
                         )
+
+                        IconButton(
+                            onClick = {
+                                isLight.value = !isLight.value
+                                themeIcon.value =
+                                    viewModel.changeUse(themeIcon.value, darkTheme, lightTheme)
+                            }
+                        ) {
+                            Icon(
+                                painter = painterResource(id = themeIcon.value),
+                                tint = Color.White,
+                                contentDescription = "Change theme"
+                            )
+                        }
 
                         IconButton(
                             onClick = {
@@ -63,7 +84,7 @@ fun ChatScreen(
             ) {
                 item {
                     message.value?.map { item ->
-                        MessageItem(item = item)
+                        MessageItem(item = item, AppTheme.colors.secondaryBackground)
                     }
                 }
             }
@@ -110,23 +131,23 @@ fun ChatScreen(
 }
 
 @Composable
-fun MessageItem(item: Message) {
+fun MessageItem(item: Message, backgroundColor: Color) {
 
     Card(
         modifier = Modifier
             .height(75.dp)
             .padding(start = 28.dp, top = 16.dp),
-        backgroundColor = AppTheme.colors.secondaryBackground,
+        backgroundColor = backgroundColor,
         elevation = 8.dp,
         shape = MaterialTheme.shapes.small.copy(CornerSize(100))
     ) {
         Row {
-            Text(text = checkNotNull(item.data))
+            Text(text = checkNotNull(item.data), color = Color.White)
 
             Spacer(modifier = Modifier.width(8.dp))
 
             Text(
-                text = checkNotNull(item.message),
+                text = checkNotNull(item.message), color = Color.White,
                 modifier = Modifier.padding(start = 8.dp, top = 18.dp, bottom = 5.dp)
             )
         }

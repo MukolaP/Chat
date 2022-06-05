@@ -28,4 +28,7 @@ class ChatViewModel @Inject constructor(
         viewModelScope.launch(dispatcher) {
             interactor.deleteAll()
         }
+
+    fun changeUse(icon: Int, dark: Int, light: Int) =
+        if (icon == dark) light else dark
 }

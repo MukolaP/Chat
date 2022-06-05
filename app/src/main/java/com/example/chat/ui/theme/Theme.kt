@@ -6,9 +6,13 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 
 @Composable
-fun ChatTheme(content: @Composable () -> Unit) {
+fun ChatTheme(
+    darkTheme: Boolean,
+    content: @Composable () -> Unit
+) {
     CompositionLocalProvider(
-        LocalColorProvider provides lightPalette,
+        if (darkTheme) LocalColorProvider provides lightPalette
+        else LocalColorProvider provides darkPalette,
         content = content
     )
 }

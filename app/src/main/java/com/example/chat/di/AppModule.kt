@@ -2,7 +2,9 @@ package com.example.chat.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.chat.app.App
 import com.example.chat.data.database.AppDatabase
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,4 +30,10 @@ class AppModule {
 
     @Provides
     fun provideDispatchers(): CoroutineContext = Dispatchers.IO
+
+    @Singleton
+    @Provides
+    fun provideApplication(app: Context): App {
+        return app as App
+    }
 }

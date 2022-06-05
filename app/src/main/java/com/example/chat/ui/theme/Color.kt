@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 data class Colors(
     val primaryBackground: Color,
     val secondaryBackground: Color,
+    val colorSecondaryUser: Color,
     val headerTextColor: Color,
     val primaryTextColor: Color,
     val primaryTintColor: Color,
@@ -13,7 +14,17 @@ data class Colors(
 val lightPalette = Colors(
     primaryBackground = Color.White,
     secondaryBackground = Color(0xFF6200EE),
+    colorSecondaryUser = Color(0xFF000000),
     headerTextColor = Color.Black,
     primaryTextColor = Color(0xFF59442B),
     primaryTintColor = Color(0xFF3700B3),
+)
+
+val darkPalette = Colors(
+    primaryBackground = Color.White,
+    secondaryBackground = Color.Black,
+    colorSecondaryUser = Color.White,
+    headerTextColor = Color.Black,
+    primaryTextColor = Color(0xFF59442B),
+    primaryTintColor = Color.Black,
 )
