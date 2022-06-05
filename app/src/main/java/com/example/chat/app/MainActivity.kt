@@ -1,0 +1,22 @@
+package com.example.chat.app
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.ui.platform.LocalContext
+import com.example.chat.ui.screens.ApplicationScreen
+import com.example.chat.ui.theme.ChatTheme
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setContent {
+            ChatTheme {
+                ApplicationScreen()
+            }
+        }
+    }
+}
