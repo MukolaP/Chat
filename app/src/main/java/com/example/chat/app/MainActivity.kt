@@ -16,14 +16,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            ThemeInitialise(isLight.value)
+            ChatTheme(isLight.value) {
+                ApplicationScreen()
+            }
         }
-    }
-}
-
-@Composable
-fun ThemeInitialise(theme: Boolean) {
-    ChatTheme(theme) {
-        ApplicationScreen()
     }
 }

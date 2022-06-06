@@ -8,6 +8,9 @@ import com.example.chat.domain.model.Message
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -29,6 +32,13 @@ class ChatViewModel @Inject constructor(
             interactor.deleteAll()
         }
 
-    fun changeUse(icon: Int, dark: Int, light: Int) =
+    fun changeUse(icon: Int, dark: Int, light: Int): Int =
         if (icon == dark) light else dark
+
+    fun date(): String {
+        val currentDate = Date()
+
+        val timeFormat: DateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+        return timeFormat.format(currentDate)
+    }
 }
