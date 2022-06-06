@@ -1,5 +1,6 @@
 package com.example.chat.ui.screens.chat
 
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,9 +9,6 @@ import com.example.chat.domain.model.Message
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -32,13 +30,12 @@ class ChatViewModel @Inject constructor(
             interactor.deleteAll()
         }
 
-    fun changeUse(icon: Int, dark: Int, light: Int): Int =
-        if (icon == dark) light else dark
+    fun changeTheme(icon: Int): Int = interactor.changeTheme(icon)
 
-    fun date(): String {
-        val currentDate = Date()
+    fun date(): String = interactor.date()
 
-        val timeFormat: DateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-        return timeFormat.format(currentDate)
-    }
+    fun changeListAlignment(user: Boolean) = interactor.changeListAlignment(user)
+
+    fun changeUserColor(user: Boolean, one: Color, two: Color): Color =
+        interactor.changeUserColor(user, one, two)
 }

@@ -14,16 +14,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.chat.R
 import com.example.chat.app.isLight
+import com.example.chat.app.user
+import com.example.chat.domain.interactor.ChatInteractor.Companion.lightIconTheme
 import com.example.chat.ui.screens.chat.ChatViewModel
 import com.example.chat.ui.theme.AppTheme
 
 @Composable
 fun ChatTopBar(viewModel: ChatViewModel) {
     val deleteIcon = R.drawable.ic_sharp_delete_sweep_24
-    val lightTheme = R.drawable.ic_baseline_brightness_1_24
-    val darkTheme = R.drawable.ic_baseline_brightness_2_24
+    val rotateIcon = R.drawable.ic_baseline_rotate_right_24
 
-    val themeIcon = remember { mutableStateOf(lightTheme) }
+    val themeIcon = remember { mutableStateOf(lightIconTheme) }
     val openDialog = remember { mutableStateOf(false) }
 
     TopAppBar(
@@ -38,9 +39,21 @@ fun ChatTopBar(viewModel: ChatViewModel) {
 
                 IconButton(
                     onClick = {
+                        user.value = !user.value
+                    }
+                ) {
+                    Icon(
+                        painter = painterResource(id = rotateIcon),
+                        tint = Color.White,
+                        contentDescription = "Change User"
+                    )
+                }
+
+                IconButton(
+                    onClick = {
                         isLight.value = !isLight.value
                         themeIcon.value =
-                            viewModel.changeUse(themeIcon.value, darkTheme, lightTheme)
+                            viewModel.changeTheme(themeIcon.value)
                     }
                 ) {
                     Icon(

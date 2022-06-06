@@ -14,7 +14,7 @@ data class Colors(
 val lightPalette = Colors(
     primaryBackground = Color.White,
     secondaryBackground = Color(0xFF6200EE),
-    colorSecondaryUser = Color(0xFF000000),
+    colorSecondaryUser = Color.LightGray,
     headerTextColor = Color.Black,
     primaryTextColor = Color(0xFF59442B),
     primaryTintColor = Color(0xFF3700B3),

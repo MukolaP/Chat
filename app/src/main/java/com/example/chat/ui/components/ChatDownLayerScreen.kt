@@ -26,7 +26,7 @@ fun ChatDownLayerScreen(viewModel: ChatViewModel) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 10.dp, end = 10.dp, bottom = 10.dp)
+            .padding(start = 10.dp, top = 0.dp, end = 10.dp, bottom = 10.dp)
     ) {
         TextField(
             value = message,
