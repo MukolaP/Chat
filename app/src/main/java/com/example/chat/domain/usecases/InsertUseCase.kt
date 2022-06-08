@@ -12,7 +12,7 @@ class InsertUseCase @Inject constructor(
 ) : InsertMessage {
 
     override suspend fun insert(message: Message) =
-        if (message.message == "       ")
+        if (message.message?.isEmpty() == true)
             toast.doToast(context, toastError, toastLength)
         else insert.insert(message)
 

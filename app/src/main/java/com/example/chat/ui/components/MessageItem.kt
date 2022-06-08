@@ -35,6 +35,12 @@ fun MessageItem(item: Message, backgroundColor: Color, textColor: Color) {
                 modifier = Modifier.padding(start = 8.dp, top = 18.dp, bottom = 5.dp),
                 maxLines = 1
             )
+
+            Text(
+                text = checkNotNull("(" + item.nickname + ")      "), color = textColor,
+                modifier = Modifier.padding(start = 8.dp, top = 18.dp, bottom = 5.dp),
+                maxLines = 1
+            )
         }
     }
 }

@@ -14,6 +14,6 @@ import dagger.hilt.android.components.ViewModelComponent
 class UseCaseModule {
 
     @Provides
-    fun bindInsertUseCase(context: Context, toast: DoToast, insert: InsertMessage):
+    fun provideInsertUseCase(context: Context, toast: DoToast, insert: InsertMessage):
             InsertUseCase = InsertUseCase(context, toast, insert)
 }

@@ -8,6 +8,7 @@ import dagger.hilt.android.HiltAndroidApp
 
 val isLight = mutableStateOf(true)
 val user = mutableStateOf(false)
+var nickname: String = ""
 
 @HiltAndroidApp
 class App : Application()

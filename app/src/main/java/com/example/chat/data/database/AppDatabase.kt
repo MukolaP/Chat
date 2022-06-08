@@ -6,7 +6,7 @@ import com.example.chat.data.database.room.MessageDao
 import com.example.chat.domain.model.Message
 import javax.inject.Inject
 
-@Database(entities = [Message::class], version = 1, exportSchema = false)
+@Database(entities = [Message::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun notesDao(): MessageDao
 }

@@ -9,16 +9,20 @@ import com.example.chat.navigation.NavigationTree
 import com.example.chat.ui.screens.chat.ChatScreen
 import com.example.chat.ui.screens.chat.ChatViewModel
 import com.example.chat.ui.screens.main.MainScreen
+import com.example.chat.ui.screens.main.MainViewModel
 
 @Composable
 fun ApplicationScreen() {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = NavigationTree.Main.name) {
-        composable(NavigationTree.Main.name) { MainScreen(navController) }
+        composable(NavigationTree.Main.name) {
+            val mainViewModel = hiltViewModel<MainViewModel>()
+            MainScreen(navController = navController, viewModel = mainViewModel)
+        }
         composable(NavigationTree.Chat.name) {
             val chatViewModel = hiltViewModel<ChatViewModel>()
-            ChatScreen(viewModel = chatViewModel)
+            ChatScreen(viewModel = chatViewModel, navController = navController)
         }
     }
 }

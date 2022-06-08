@@ -13,9 +13,6 @@ interface MessageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(notes: Message)
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun update(notes: Message)
-
     @Query("DELETE FROM message")
     suspend fun deleteAll()
 }

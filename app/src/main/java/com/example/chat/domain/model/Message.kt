@@ -9,4 +9,5 @@ data class Message(
     @PrimaryKey(autoGenerate = true) val uid: Int = 0,
     @ColumnInfo(name = "data") var data: String? = "",
     @ColumnInfo(name = "message") var message: String? = "",
+    @ColumnInfo(name = "nickname") var nickname: String? = "",
 )

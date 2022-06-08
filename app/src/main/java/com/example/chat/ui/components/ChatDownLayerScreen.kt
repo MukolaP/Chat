@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.chat.R
+import com.example.chat.app.nickname
 import com.example.chat.domain.model.Message
 import com.example.chat.ui.screens.chat.ChatViewModel
 import com.example.chat.ui.theme.AppTheme
@@ -48,7 +49,13 @@ fun ChatDownLayerScreen(viewModel: ChatViewModel) {
 
         IconButton(
             onClick = {
-                viewModel.insert(Message(data = viewModel.date(), message = "$message       "))
+                viewModel.insert(
+                    Message(
+                        data = viewModel.date(),
+                        message = message,
+                        nickname = nickname
+                    )
+                )
                 message = ""
             }
         ) {

@@ -1,6 +1,9 @@
 package com.example.chat.di
 
+import android.content.Context
+import com.example.chat.core.DoToast
 import com.example.chat.domain.interactor.ChatInteractor
+import com.example.chat.domain.interactor.MainInteractor
 import com.example.chat.domain.repositories.DeleteAllMessage
 import com.example.chat.domain.repositories.Repository
 import com.example.chat.domain.usecases.InsertUseCase
@@ -20,4 +23,10 @@ class DomainModule {
         deleteAll: DeleteAllMessage,
     ): ChatInteractor =
         ChatInteractor.Base(repository, insert, deleteAll)
+
+    @Provides
+    fun provideMainInteractor(
+        toast: DoToast,
+        context: Context
+    ): MainInteractor = MainInteractor.Base(toast, context)
 }

@@ -12,15 +12,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.chat.R
 import com.example.chat.app.isLight
-import com.example.chat.app.user
 import com.example.chat.domain.interactor.ChatInteractor.Companion.lightIconTheme
+import com.example.chat.navigation.NavigationTree
 import com.example.chat.ui.screens.chat.ChatViewModel
 import com.example.chat.ui.theme.AppTheme
 
 @Composable
-fun ChatTopBar(viewModel: ChatViewModel) {
+fun ChatTopBar(
+    navController: NavController,
+    viewModel: ChatViewModel
+) {
     val deleteIcon = R.drawable.ic_sharp_delete_sweep_24
     val rotateIcon = R.drawable.ic_baseline_rotate_right_24
 
@@ -39,7 +43,7 @@ fun ChatTopBar(viewModel: ChatViewModel) {
 
                 IconButton(
                     onClick = {
-                        user.value = !user.value
+                        navController.navigate(NavigationTree.Main.name)
                     }
                 ) {
                     Icon(

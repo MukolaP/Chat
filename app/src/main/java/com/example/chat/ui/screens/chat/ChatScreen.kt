@@ -10,6 +10,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.chat.app.user
 import com.example.chat.domain.model.Message
 import com.example.chat.ui.components.ChatDownLayerScreen
@@ -19,6 +20,7 @@ import com.example.chat.ui.theme.AppTheme
 
 @Composable
 fun ChatScreen(
+    navController: NavController,
     viewModel: ChatViewModel = viewModel(),
 ) {
     val message: State<List<Message>?> = viewModel.message.observeAsState()
@@ -31,7 +33,7 @@ fun ChatScreen(
 
     Scaffold(
         topBar = {
-            ChatTopBar(viewModel = viewModel)
+            ChatTopBar(viewModel = viewModel, navController = navController)
         },
     ) {
         Column {
